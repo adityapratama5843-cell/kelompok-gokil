@@ -1,0 +1,229 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blue Night</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+height:100vh;
+overflow:hidden;
+font-family:Arial,sans-serif;
+
+background:url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=2070') no-repeat center center/cover;
+position:relative;
+}
+
+/* Overlay */
+body::before{
+content:'';
+position:absolute;
+inset:0;
+background:rgba(0,0,40,0.4);
+}
+
+/* Stars */
+.stars{
+position:absolute;
+width:100%;
+height:100%;
+overflow:hidden;
+z-index:1;
+}
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:#8fd3ff;
+border-radius:50%;
+box-shadow:0 0 10px #4fc3ff;
+animation:twinkle 3s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:0.2;}
+to{opacity:1;}
+}
+
+/* Shooting star */
+.shooting-star{
+position:absolute;
+width:160px;
+height:2px;
+background:linear-gradient(to right,#8fd3ff,transparent);
+transform:rotate(-25deg);
+opacity:0;
+animation:shoot 5s linear infinite;
+}
+
+.shooting-star:nth-child(1){
+top:10%;
+left:-20%;
+animation-delay:0s;
+}
+
+.shooting-star:nth-child(2){
+top:25%;
+left:-30%;
+animation-delay:2s;
+}
+
+@keyframes shoot{
+
+0%{
+transform:translateX(0) translateY(0) rotate(-25deg);
+opacity:0;
+}
+
+10%{
+opacity:1;
+}
+
+100%{
+transform:translateX(1400px) translateY(400px) rotate(-25deg);
+opacity:0;
+}
+
+}
+
+/* Frame */
+.frame{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+
+width:330px;
+height:430px;
+
+background:rgba(0,0,40,0.25);
+backdrop-filter:blur(8px);
+
+border-radius:25px;
+border:2px solid rgba(255,255,255,0.15);
+
+box-shadow:
+0 0 20px rgba(79,195,255,0.6),
+inset 0 0 20px rgba(255,255,255,0.08);
+
+z-index:3;
+}
+
+.frame h1{
+color:#c7ecff;
+text-align:center;
+margin-top:160px;
+font-size:35px;
+text-shadow:0 0 10px #4fc3ff;
+}
+
+.frame p{
+color:#d9f6ff;
+text-align:center;
+margin-top:15px;
+padding:0 20px;
+line-height:1.6;
+}
+
+/* Fireflies */
+.firefly{
+position:absolute;
+width:6px;
+height:6px;
+background:#8fffd1;
+border-radius:50%;
+box-shadow:0 0 15px #8fffd1;
+animation:fly 10s infinite ease-in-out;
+z-index:2;
+}
+
+@keyframes fly{
+
+0%{transform:translate(0,0);}
+25%{transform:translate(50px,-40px);}
+50%{transform:translate(-30px,30px);}
+75%{transform:translate(40px,60px);}
+100%{transform:translate(0,0);}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<audio autoplay loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8e0c6f4.mp3?filename=ocean-waves-at-night-ambient-110624.mp3" type="audio/mpeg">
+</audio>
+
+<div class="stars">
+
+<div class="shooting-star"></div>
+<div class="shooting-star"></div>
+
+</div>
+
+<div class="frame">
+
+<h1>Blue Night</h1>
+
+<p>
+Calm waves, glowing stars, and midnight skies 🌌
+</p>
+
+</div>
+
+<script>
+
+/* Stars */
+for(let i=0;i<120;i++){
+
+const star=document.createElement('div');
+
+star.classList.add('star');
+
+star.style.top=Math.random()*100+'%';
+star.style.left=Math.random()*100+'%';
+
+star.style.animationDuration=
+(Math.random()*3+2)+'s';
+
+document.querySelector('.stars').appendChild(star);
+
+}
+
+/* Fireflies */
+for(let i=0;i<25;i++){
+
+const firefly=document.createElement('div');
+
+firefly.classList.add('firefly');
+
+firefly.style.top=
+(35+Math.random()*30)+'%';
+
+firefly.style.left=
+(35+Math.random()*30)+'%';
+
+firefly.style.animationDuration=
+(Math.random()*6+4)+'s';
+
+document.body.appendChild(firefly);
+
+}
+
+</script>
+
+</body>
+</html>
